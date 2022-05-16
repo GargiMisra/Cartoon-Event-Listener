@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eyes Movement With Mouse</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html{
+        font-size: 62.5%;
+      }
+      body{
+        width: 100vw;
+        height: 100vh;
+        background-color: #3fbdc2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cartoon{
+        width: 30rem;
+        height: 30rem;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0.5rem 2rem lightgrey;
+      }
+      .eyes{
+        width: 10rem;
+        height: 10rem;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0.5rem 2rem lightgrey;
+        overflow: hidden;
+      }
+      .eyes:first-child{
+        position: absolute;
+        top: 40%;
+        left: 40%;
+      }
+      .eyes:last-child{
+        position: absolute;
+        top: 40%;
+        right: 40%;
+      }
+      .black1{
+        width: 4rem;
+        height: 4rem;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+      .black2{
+        width: 4rem;
+        height: 4rem;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cartoon">
+      <div class="eyes">
+        <div class="black1"></div>
+      </div>
+      <div class="eyes">
+        <div class="black2"></div>
+      </div>
+    </div>
+    <script>
+      let black1 = document.querySelector('.black1');
+      let black2 = document.querySelector('.black2');
+      let mXStart = 0;
+      let mXEnd = window.innerWidth;
+      let curX = 0;
+      let perX = 0;
+      let mYEnd = window.innerHeight;
+      let curY = 0;
+      let perY = 0;
+      const mouseMove = (event) => {
+        curX = event.clientX;
+        perX = curX / mXEnd * 10;
+        curY = event.clientY;
+        perY = curY / mYEnd * 10;
+        black1.style.top = perY + "rem";
+        black1.style.left = perX + "rem";
+        black2.style.top = perY + "rem";
+        black2.style.left = perX + "rem";
+      }
+      window.addEventListener('mousemove',mouseMove);
+    </script>
+  </body>
+</html>
